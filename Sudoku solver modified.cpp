@@ -62,45 +62,32 @@ int nextcell_column(int r,int c)
         return c+1;
 }//Returns column coordinate of next cell
 
-bool findsoln(int r,int c)
+int findsoln(int r,int c,int counter)
 {
     if(arr[r][c]==0)//If that position is blank in the puzzle
     {
-        for(int i=1; i<=9; i++)
+        for(int i=1; i<=9,counter<2; i++)
         {
             if(Hor(r,c,i) && Vert(r,c,i) && Box(r,c,i))//If there is no instance of number i in that row, column or box
             {
-                arr[r][c]=i;//Temporarily assign i, for now, there is no loophole in the solution
                 if(r==9 && c==9)//If the last cell has been assigned a number, it means the puzzle has a solution
                 {
-                    return true;
+                    return 1+counter;
                 }
-                else if(findsoln(nextcell_row(r,c),nextcell_column(r,c)))//If assigning i leads to a solution for the puzzle, return true i.e. there is a solution
-                {
-                    return true;
-                }
-                else//If assigning i doesn't lead to a solution, then remove that temporarily assigned value
-                {
-                    arr[r][c]=0;
-                }
+                arr[r][c]=i;//Temporarily assign i, for now, there is no loophole in the solution
+                counter=findsoln(nextcell_row(r,c),nextcell_column(r,c),counter);
             }
         }
-        if(arr[r][c]==0)//At this point, all the values from 1-9 for that particular cell would be exhausted, and none of them would have led to a solution, so return false to the previous cell
-        {
-            return false;
-        }
+        arr[r][c]=0;
+        return counter;
     }
     else if(r==9 && c==9)//If the last cell has been reached, and it already has an assigned value, that is still a solution for the puzzle, so return true
     {
-        return true;
+        return 1+counter;
     }
-    else if(findsoln(nextcell_row(r,c),nextcell_column(r,c)))//If cell has already been assigned a value in the puzzle,  check if it subsequently leads to a solution, findsoln for next cell
+    else
     {
-        return true;
-    }
-    else//If the cell has already been assigned a value in the puzzle, and it does not lead to a solution, return false
-    {
-        return false;
+        return findsoln(nextcell_row(r,c),nextcell_column(r,c),counter);
     }
 }
 int main()
@@ -113,7 +100,7 @@ int main()
             cin>>arr[i][j];
         }
     }
-    findsoln(1,1);//Calls cell (1,1)
+    cout<<findsoln(1,1,0);//Calls cell (1,1)
     cout<<'\n';
     for(int i=1; i<=9; i++)
     {
