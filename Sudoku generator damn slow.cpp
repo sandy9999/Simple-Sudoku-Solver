@@ -1,6 +1,9 @@
 #include <iostream>
-using namespace std;
+#include <cstdlib>
+#include <ctime>
 int arr[10][10];
+
+using namespace std;
 
 int Hor(int r,int c,int i)//r,c - row and column coordinates where number i is to be assigned
 {
@@ -110,28 +113,34 @@ int solutions()
     }
     return findsoln(1,1,0);//Calls cell (1,1)
 }
+
 int main()
 {
-    cout<<"Enter the puzzle\n";
     for(int i=1; i<=9; i++)
-    {
         for(int j=1; j<=9; j++)
+            arr[i][j]=0;
+    srand((unsigned)time(NULL));
+    int j=(rand()%9)+1;
+    int r=(rand()%9)+1;
+    int c=(rand()%9)+1;
+    arr[r][c]=j;
+    while(solutions()==2)
+    {
+        //cout<<"HI";
+        j=(rand()%9)+1;
+        r=(rand()%9)+1;
+        c=(rand()%9)+1;
+        arr[r][c]=j;
+        if(solutions()==0)
         {
-            cin>>arr[i][j];
+            arr[r][c]=0;
         }
     }
-    cout<<solutions();
-    cout<<'\n';
     for(int i=1; i<=9; i++)
     {
         for(int j=1; j<=9; j++)
-        {
             cout<<arr[i][j]<<' ';
-        }
         cout<<endl;
     }
-    return 0;
+
 }
-//findsoln(1,1) will return true when there is a solution, For it to do so, findsoln(1,2) needs to return true to findsoln(1,1), findsoln(1,3) needs to return true to findsoln(1,2) and so on until findsoln(9,9) returns true to findsoln(9,8)
-//If say, for a particular coordinate (r,c), none of the values 1-9 leads to a solution, then definitely there is a flaw with the values in the previous cells, so it returns false to the previous cell
-//Btw, arrays are 1-indexed
