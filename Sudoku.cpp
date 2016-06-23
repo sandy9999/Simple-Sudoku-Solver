@@ -127,4 +127,3 @@ int main()
 }
 //findsoln(1,1) will return true when there is a solution, For it to do so, findsoln(1,2) needs to return true to findsoln(1,1), findsoln(1,3) needs to return true to findsoln(1,2) and so on until findsoln(9,9) returns true to findsoln(9,8)
 //If say, for a particular coordinate (r,c), none of the values 1-9 leads to a solution, then definitely there is a flaw with the values in the previous cells, so it returns false to the previous cell
-//Btw, arrays are 1-indexed
