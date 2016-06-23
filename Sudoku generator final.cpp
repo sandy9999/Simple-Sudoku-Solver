@@ -151,7 +151,6 @@ int findsoln(int r,int c,int counter)
 
 int solutions()
 {
-    bool uniq=true;
     for(int r=1; r<=9; r++)
     {
         for(int c=1; c<=9; c++)
@@ -191,7 +190,7 @@ int main()
     srand((unsigned)time(NULL));
     int counter=0;
     int j,r,c;
-    while(counter<20)
+    while(counter<55)
     {
         //cout<<"HI";
         r=(rand()%9)+1;
