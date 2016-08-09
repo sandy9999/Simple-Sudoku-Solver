@@ -4,76 +4,110 @@
 #include<conio.h>
 #include<process.h>
 #include<ctype.h>
+void creategrid();
+
 void navigate()
 {
- int i=21,j=3;
- char ch,prev;
- gotoxy(i,j);
+ int curc=21,curr=2,noc=21,nor=3;
+ char ch='y';
+ gotoxy(curc,curr);
  cout<<'_';
  while(ch!='q'||ch!='Q')
  { ch=getch();
-  if(!isalpha(ch))
-  prev=ch;
   if(isdigit(ch))
-  {cout<<ch;
-  gotoxy(i,j);
+  {gotoxy(noc,nor);
+  cout<<ch;
+  gotoxy(noc,nor);
   }
   if(ch=='s')
   {
-   gotoxy(i,j);
-   if(prev=='_')
+   gotoxy(curc,curr);
    cout<<' ';
-   if(j!=23)
-   j+=2;
-   gotoxy(i,j);
+   if(nor!=23)
+   {
+   curr+=2;
+   nor+=2;
+   }
+   if(nor-2==5 || nor-2==10 || nor-2==15 || nor-2==20)
+   {
+   curr++;
+   nor++;
+   }
+   gotoxy(curc,curr);
    cout<<'_';
-   gotoxy(i,j);
+   creategrid();
+   gotoxy(curc,curr);
    }
    if(ch=='w')
    {
-   gotoxy(i,j);
-   if(prev=='_')
+   gotoxy(curc,curr);
    cout<<' ';
-   if(j!=3)
-   j-=2;
-   gotoxy(i,j);
+   if(nor!=3)
+   {
+   curr-=2;
+   nor-=2;
+   }
+   if(nor+2==23 || nor+2==18 || nor+2==13 || nor+2==8)
+   {
+   curr--;
+   nor--;
+   }
+   gotoxy(curc,curr);
    cout<<'_';
-   gotoxy(i,j);
+   creategrid();
+   gotoxy(curc,curr);
    }
 
    if(ch=='d'||ch=='D')
    {
-    gotoxy(i,j);
-    if(prev=='_')
+    gotoxy(curc,curr);
     cout<<' ';
-    if(i!=66)
-    i+=5;
-    gotoxy(i,j);
+    if(noc!=61)
+    {
+    curc+=5;
+    noc+=5;
+    }
+    gotoxy(curc,curr);
     cout<<'_';
-    gotoxy(i,j);
+    creategrid();
+    gotoxy(curc,curr);
     }
    if(ch=='a'||ch=='A')
    {
-    gotoxy(i,j);
-    if(prev=='_')
+    gotoxy(curc,curr);
 
     cout<<' ';
-    if(i!=21)
-    i-=5;
-    gotoxy(i,j);
+    if(noc!=21)
+    {
+    curc-=5;
+    noc-=5;
+    }
+    gotoxy(curc,curr);
     cout<<'_';
-    gotoxy(i,j);
+    creategrid();
+    gotoxy(curc,curr);
     }
     else if(ch=='q'||ch=='Q')
     exit(0);
     else
-    gotoxy(i,j);
+    gotoxy(curc,curr);
     }
+   }
+
+   void creategrid()
+   {
+      int ct1=0,ct2,i,j;
+      for(i=150;ct1<9;i+=40,ct1++)
+      {
+       ct2=0;
+       for(j=20;ct2<9;j+=40,ct2++)
+       rectangle(i,j,i+40,j+40);
+       }
    }
    int main(void)
    {
     int gdriver=DETECT,gmode,i,j;
-    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+    initgraph(&gdriver,&gmode,"C:/TURBOC3/BGI");
     int a[9][9],m,n,x=21,y=3;
     for(m=0;m<9;m++)
      for(n=0;n<9;n++)
@@ -83,7 +117,7 @@ void navigate()
       for(n=0;n<9;n++,x+=5)
       {
        gotoxy(x,y);
-       cout<<a[m][n];
+       cout<<a[n][m];
        }
        if(m==1)
        y++;
@@ -95,13 +129,8 @@ void navigate()
        y++;
        x=21;
       }
-      int ct1=0,ct2;
-      for(i=150;ct1<9;i+=40,ct1++)
-      {
-       ct2=0;
-       for(j=20;ct2<9;j+=40,ct2++)
-       rectangle(i,j,i+40,j+40);
-       }getch();
+      creategrid();
+      getch();
       navigate();
       closegraph();
       return 0;
