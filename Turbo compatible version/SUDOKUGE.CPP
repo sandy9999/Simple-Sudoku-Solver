@@ -229,7 +229,7 @@ int gen()
    char ch;
    Sudoku s;
    s.solved();
-   fstream x("Soln.txt",ios::out);
+   fstream x("C:/TURBOC3/BIN/PROJECT/Soln.txt",ios::out);
    for(int i=1; i<=9; i++)
    {
      for(int j=1; j<=9; j++)
@@ -242,7 +242,7 @@ int gen()
    }
    x.close();
    s.unsolved();
-  x.open("Puzzle.txt",ios::out);
+  x.open("C:/TURBOC3/BIN/PROJECT/Puzzle.txt",ios::out);
    for(i=1; i<=9; i++)
    {
      for(int j=1; j<=9; j++)

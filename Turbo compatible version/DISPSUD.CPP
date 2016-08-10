@@ -15,7 +15,6 @@ for(int k=0; k<9; k++)
 {
  for(int l=0; l<9; l++)
    a[k][l]=-1;
-
 }
   char ch;
  fstream z("C:/TURBOC3/BIN/PROJECT/PUZZLE.txt",ios::in);

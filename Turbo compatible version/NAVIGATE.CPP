@@ -1,9 +1,12 @@
+//Hit c to check
 #include<iostream.h>
 #include<graphics.h>
 #include<stdio.h>
 #include<conio.h>
 #include<process.h>
 #include<ctype.h>
+#include <fstream.h>
+int a[10][10],user[10][10],s[10][10],key[100];
 void creategrid();
 
 void navigate()
@@ -15,9 +18,16 @@ void navigate()
  while(ch!='q'||ch!='Q')
  { ch=getch();
   if(isdigit(ch))
-  {gotoxy(noc,nor);
+  {
+  //cout<<a[key[nor]][key[noc]];
+  gotoxy(noc,nor);
+  if(a[key[nor]][key[noc]]==0)
+  {
+  gotoxy(noc,nor);
   cout<<ch;
   gotoxy(noc,nor);
+  user[key[nor]][key[noc]]=ch-'0';
+  }
   }
   if(ch=='s')
   {
@@ -89,6 +99,27 @@ void navigate()
     }
     else if(ch=='q'||ch=='Q')
     exit(0);
+    else if(ch=='c' || ch=='C')
+    {
+       int flag=1;
+       for(int k=0; k<9; k++)
+	for(int l=0; l<9; l++)
+	if(user[k][l]!=s[k][l])
+	{ flag=0;
+	}
+       if(flag==1)
+       {
+       gotoxy(66,10);
+       cout<<"Correct!";
+       }
+       else
+       {
+       gotoxy(66,10);
+       cout<<"Wrong!";
+       }
+
+
+    }
     else
     gotoxy(curc,curr);
     }
@@ -104,20 +135,183 @@ void navigate()
        rectangle(i,j,i+40,j+40);
        }
    }
+
+void puzzleinput()
+{
+key[21]=0;
+key[26]=1;
+key[31]=2;
+key[36]=3;
+key[41]=4;
+key[46]=5;
+key[51]=6;
+key[56]=7;
+key[61]=8;
+key[3]=0;
+key[5]=1;
+key[8]=2;
+key[10]=3;
+key[13]=4;
+key[15]=5;
+key[18]=6;
+key[20]=7;
+key[23]=8;
+
+for(int k=0; k<9; k++)
+{
+ for(int l=0; l<9; l++)
+ {
+   a[k][l]=-1;
+   user[k][l]=-1;
+ }
+}
+  char ch;
+ fstream z("C:/TURBOC3/BIN/PROJECT/PUZZLE.txt",ios::in);
+ if(!z)
+ cout<<"No file\n";
+ int i=0,j;
+
+ while(!z.eof())
+ {
+       while(i<9)
+       {
+	   j=0;
+	   while(j<9)
+	   {
+	       z.get(ch);
+	       if(ch>='0' && ch<='9')
+	       {
+		   switch(ch)
+	{case '0':
+	   a[i][j]=0;
+	   user[i][j]=0;
+	   break;
+	case '1':
+	   a[i][j]=1;
+	   user[i][j]=1;
+	   break;
+	case '2':
+	   a[i][j]=2;
+	   user[i][j]=2;
+	   break;
+	case '3':
+	   a[i][j]=3;
+	   user[i][j]=3;
+	   break;
+	case '4':
+	   a[i][j]=4;
+	   user[i][j]=4;
+	   break;
+	case '5':
+	   a[i][j]=5;
+	   user[i][j]=5;
+	   break;
+	case '6':
+	   a[i][j]=6;
+	   user[i][j]=6;
+	   break;
+	case '7':
+	   a[i][j]=7;
+	   user[i][j]=7;
+	   break;
+	case '8':
+	   a[i][j]=8;
+	   user[i][j]=8;
+	   break;
+	case '9':
+	   a[i][j]=9;
+	   user[i][j]=9;
+	   break;
+	default:
+	 cout<<"DEFAULT";
+	 }
+	 j++;
+	       }
+
+	   }
+	   i++;
+       }
+       z.get(ch);
+ }
+  z.close();
+  z.open("C:/TURBOC3/BIN/PROJECT/SOLN.txt",ios::in);
+ if(!z)
+ cout<<"No file\n";
+ i=0;
+
+ while(!z.eof())
+ {
+       while(i<9)
+       {
+	   j=0;
+	   while(j<9)
+	   {
+	       z.get(ch);
+	       if(ch>='0' && ch<='9')
+	       {
+		   switch(ch)
+	{case '0':
+	   s[i][j]=0;
+	   break;
+	case '1':
+	   s[i][j]=1;
+	   break;
+	case '2':
+	   s[i][j]=2;
+	   break;
+	case '3':
+	   s[i][j]=3;
+	   break;
+	case '4':
+	   s[i][j]=4;
+	   break;
+	case '5':
+	   s[i][j]=5;
+	   break;
+	case '6':
+	   s[i][j]=6;
+	   break;
+	case '7':
+	   s[i][j]=7;
+	   break;
+	case '8':
+	   s[i][j]=8;
+	   break;
+	case '9':
+	   s[i][j]=9;
+	   break;
+	default:
+	 cout<<"DEFAULT";
+	 }
+	 j++;
+	       }
+
+	   }
+	   i++;
+       }
+       z.get(ch);
+ }
+  z.close();
+   }
+
    int main(void)
    {
     int gdriver=DETECT,gmode,i,j;
     initgraph(&gdriver,&gmode,"C:/TURBOC3/BGI");
-    int a[9][9],m,n,x=21,y=3;
-    for(m=0;m<9;m++)
+    puzzleinput();
+    int m,n,x=21,y=3;
+    /*for(m=0;m<9;m++)
      for(n=0;n<9;n++)
-     a[m][n]=0;
+     a[m][n]=0;*/
      for(m=0;m<9;m++,y+=2)
      {
       for(n=0;n<9;n++,x+=5)
       {
        gotoxy(x,y);
-       cout<<a[n][m];
+       if(a[m][n]!=0)
+       cout<<a[m][n];
+       else
+	cout<<' ';
        }
        if(m==1)
        y++;
