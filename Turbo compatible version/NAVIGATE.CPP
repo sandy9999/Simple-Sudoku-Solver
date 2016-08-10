@@ -104,18 +104,18 @@ void navigate()
        int flag=1;
        for(int k=0; k<9; k++)
 	for(int l=0; l<9; l++)
-	if(user[k][l]!=s[k][l])
+	if(user[k][l]!=s[k][l] && user[k][l]!=-1)
 	{ flag=0;
 	}
        if(flag==1)
        {
        gotoxy(66,10);
-       cout<<"Correct!";
+       cout<<"Correct! Go on";
        }
        else
        {
        gotoxy(66,10);
-       cout<<"Wrong!";
+       cout<<"Wrong! Check !";
        }
 
 
@@ -184,7 +184,6 @@ for(int k=0; k<9; k++)
 		   switch(ch)
 	{case '0':
 	   a[i][j]=0;
-	   user[i][j]=0;
 	   break;
 	case '1':
 	   a[i][j]=1;
