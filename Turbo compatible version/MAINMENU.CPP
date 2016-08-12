@@ -5,36 +5,46 @@
 #include<fstream.h>
 #include<graphics.h>
 #include "C:/TURBOC3/BIN/PROJECT/SUDOKUGE.CPP"
-#include "C:/TURBOC3/BIN/PROJECT/DISP.CPP"
+int lev;
 
-int a[9][9];
-/*
-
-	void main()
+void menu()
 {
- int gdriver=DETECT,gmode;
-    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+/* int gdriver=DETECT,gmode;
+    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");  */
+
+
 MENU:
-clrscr(); disp();
-int choice;
+clrscr();
+int choice,diff;// Diff is the variable which accepts the difficulty level from the user
 char ch, s[100];
 cout<<"\n\n\t\t\t\t  SUDOKU"  ;
 cout<<"\n\n\tMENU"<<endl;
 cout<<"\n1.New Game\t\n2.Instructions\t\n3.About the game\t\n4.Quit" ;
 cout<<"\n\nEnter your Choice (1/2/3/4)";
 cin>>choice;
-fstream x("C:/TURBOC3/BIN/PROJECT/Ins.txt",ios::in);
-fstream y("C:/TURBOC3/BIN/PROJECT/About.txt",ios::in);
+fstream x("C:/TURBOC3/PROJECTS/SUDOKU/Ins.txt",ios::in);
+fstream y("C:/TURBOC3/PROJECTS/SUDOKU/About.txt",ios::in);
 if(choice==1)
  { clrscr();
- fstream z("C:/TURBOC3/BIN/PROJECT/PUZZLE.txt",ios::in);
+   cout<<"\nChoose the difficulty level\n\n1.Easy()\n\n2.Medium()\n\n3.Hard()\n";
+   cin>>diff;
+   if(diff==1)
+    lev=45;
+   if(diff==2)
+    lev=50;
+   if(diff==3)
+    lev=54;
+   //gen();
+//   navigation();
+/* fstream z("C:/TURBOC3/BIN/PUZZLE.txt",ios::in);
  while(!z.eof())
      {
      z.getline(s,1000);
      cout<<s<<endl;;
      }
-     z.close();
+     z.close();  */
  }
+
 else if(choice==2)
  { clrscr();
  if(!x)
@@ -81,33 +91,20 @@ else if(choice==4)
 getch();
 
 }
-*/
 
+/*
 void main()
 { clrscr();
-for(int k=0; k<9; k++)
-{
- for(int l=0; l<9; l++)
-   a[k][l]=-1;
-
-}
+  for(int k=0; k<9; k++)
+  for(int l=0; l<9; l++)
+  a[k][l]=-1;
+  int i,j=0;
   char ch;
  fstream z("C:/TURBOC3/BIN/PROJECT/PUZZLE.txt",ios::in);
- if(!z)
- cout<<"No file\n";
- int i=0,j;
+   while(!z.eof())
+   { z.get(ch);
 
- while(!z.eof())
- {
-       while(i<9)
-       {
-           j=0;
-           while(j<9)
-           {
-               z.get(ch);
-               if(ch>='0' && ch<='9')
-               {
-                   switch(ch)
+       switch(ch)
 	{case '0':
 	   a[i][j]=0;break;
 	case '1':
@@ -129,76 +126,19 @@ for(int k=0; k<9; k++)
 	case '9':
 	   a[i][j]=9;break;
 	default:
-	 cout<<"DEFAULT";
+	 cout<<"BLA";
 	 }
 	 j++;
-               }
-
-           }
-           i++;
-       }
-       z.get(ch);
- }
-  z.close();
+    if(j%9==0)
+    {
+      i++;
+      j=0;
+    }
+   }
+ z.close();
  for(i=0;i<9;i++)
   { for(j=0;j<9;j++)
     cout<<a[i][j];
     cout<<endl;
-  }getch();
- /*int i,j;
- while(!z.eof())
- {
-       for(i=0; i<9; i++)
-       {
-       for(j=0; j<9; j++)
-       {
-	z.get(ch);
-	/*if(!(ch>='0' && ch<='9'))
-    {
-        j--;
-        cout<<j<<endl;
-        continue;
-    }*/
-	/*switch(ch)
-	{case '0':
-	   a[i][j]=0;break;
-	case '1':
-	   a[i][j]=1;break;
-	case '2':
-	   a[i][j]=2;break;
-	case '3':
-	   a[i][j]=3;break;
-	case '4':
-	   a[i][j]=4;break;
-	case '5':
-	   a[i][j]=5;break;
-	case '6':
-	   a[i][j]=6;break;
-	case '7':
-	   a[i][j]=7;break;
-	case '8':
-	   a[i][j]=8;break;
-	case '9':
-	   a[i][j]=9;break;
-	default:
-	 cout<<"DEFAULT";
-	 }
-	 }
-       }
- }*/
-   /*for(i=0;i<9;i++)
-   {
-    j++;
-    if(j%9==0)
-    {
-    i++;
-    j=0;
-    }
-   } */
- //z.close();
- /*for(i=0;i<9;i++)
-  { for(j=0;j<9;j++)
-    cout<<a[i][j];
-    cout<<endl;
-  } getch();*/
-  }
+  } getch();
+}*/
