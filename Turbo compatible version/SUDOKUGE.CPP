@@ -43,12 +43,14 @@ void Sudoku::solved()
     srand((unsigned)time(NULL));
     int counter=0;
     int j,r,c;
-    while(counter<55)
+    while(counter<54)
     {
 	//cout<<"HI";
 	r=(rand()%9)+1;
 	c=(rand()%9)+1;
 	j=arr[r][c];
+	if(j!=0)
+    {
 	arr[r][c]=0;
 	counter++;
 	if(solutions()==2)
@@ -56,6 +58,7 @@ void Sudoku::solved()
 	    arr[r][c]=j;
 	    counter--;
 	}
+    }
     }
   }
 
@@ -208,7 +211,7 @@ int Sudoku::findsoln(int r,int c,int counter)
 
 int Sudoku::solutions()
 {
-    for(int r=1; r<=9; r++)
+    /*for(int r=1; r<=9; r++)
     {
 	for(int c=1; c<=9; c++)
 	{
@@ -220,7 +223,7 @@ int Sudoku::solutions()
 		    }
 	    }
 	}
-    }
+    }*/
     return findsoln(1,1,0);//Calls cell (1,1)
 }
 
@@ -255,4 +258,3 @@ int gen()
    }
    x.close();
    return 0;
-}
