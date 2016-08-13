@@ -43,14 +43,12 @@ void Sudoku::solved()
     srand((unsigned)time(NULL));
     int counter=0;
     int j,r,c;
-    while(counter<54)
+    while(counter<55)
     {
 	//cout<<"HI";
 	r=(rand()%9)+1;
 	c=(rand()%9)+1;
 	j=arr[r][c];
-	if(j!=0)
-    {
 	arr[r][c]=0;
 	counter++;
 	if(solutions()==2)
@@ -58,7 +56,6 @@ void Sudoku::solved()
 	    arr[r][c]=j;
 	    counter--;
 	}
-    }
     }
   }
 
@@ -211,7 +208,7 @@ int Sudoku::findsoln(int r,int c,int counter)
 
 int Sudoku::solutions()
 {
-    /*for(int r=1; r<=9; r++)
+    for(int r=1; r<=9; r++)
     {
 	for(int c=1; c<=9; c++)
 	{
@@ -223,7 +220,7 @@ int Sudoku::solutions()
 		    }
 	    }
 	}
-    }*/
+    }
     return findsoln(1,1,0);//Calls cell (1,1)
 }
 
@@ -232,7 +229,7 @@ int gen()
    char ch;
    Sudoku s;
    s.solved();
-   fstream x("C:/TURBOC3/BIN/PROJECT/Soln.txt",ios::out);
+   fstream x("Soln.txt",ios::out);
    for(int i=1; i<=9; i++)
    {
      for(int j=1; j<=9; j++)
@@ -245,7 +242,7 @@ int gen()
    }
    x.close();
    s.unsolved();
-  x.open("C:/TURBOC3/BIN/PROJECT/Puzzle.txt",ios::out);
+  x.open("Puzzle.txt",ios::out);
    for(i=1; i<=9; i++)
    {
      for(int j=1; j<=9; j++)
@@ -258,3 +255,4 @@ int gen()
    }
    x.close();
    return 0;
+}

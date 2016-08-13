@@ -9,4 +9,4 @@ W--> To move up.
 S--> To move down.
 D--> To move right.
 Q--> To quit game and return to menu.
-S--> To quit game and view solution.
+C--> To check if solution is correct.

@@ -5,17 +5,16 @@
 #include<fstream.h>
 #include<graphics.h>
 #include "C:/TURBOC3/BIN/PROJECT/SUDOKUGE.CPP"
-#include "C:/TURBOC3/BIN/PROJECT/DISP.CPP"
+#include "C:/TURBOC3/BIN/PROJECT/NAVIGATE.CPP"
+int lev;
 
-char a[9][9];
-/*
 void main()
 {
 /* int gdriver=DETECT,gmode;
-    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");  */
 MENU:
-clrscr(); disp();
-int choice;
+clrscr();
+int choice,diff;// Diff is the variable which accepts the difficulty level from the user
 char ch, s[100];
 cout<<"\n\n\t\t\t\t  SUDOKU"  ;
 cout<<"\n\n\tMENU"<<endl;
@@ -26,13 +25,24 @@ fstream x("C:/TURBOC3/PROJECTS/SUDOKU/Ins.txt",ios::in);
 fstream y("C:/TURBOC3/PROJECTS/SUDOKU/About.txt",ios::in);
 if(choice==1)
  { clrscr();
- fstream z("C:/TURBOC3/BIN/PUZZLE.txt",ios::in);
+   cout<<"\nChoose the difficulty level\n\n1.Easy()\n\n2.Medium()\n\n3.Hard()\n";
+   cin>>diff;
+   if(diff==1)
+    lev=40;
+   if(diff==2)
+    lev=45;
+   if(diff==3)
+    lev=50;
+   gen();
+   navigation();
+   goto MENU;
+/* fstream z("C:/TURBOC3/BIN/PUZZLE.txt",ios::in);
  while(!z.eof())
      {
      z.getline(s,1000);
      cout<<s<<endl;;
      }
-     z.close();
+     z.close();  */
  }
 else if(choice==2)
  { clrscr();
@@ -80,8 +90,8 @@ else if(choice==4)
 getch();
 
 }
- */
 
+/*
 void main()
 { clrscr();
   for(int k=0; k<9; k++)
@@ -130,4 +140,4 @@ void main()
     cout<<a[i][j];
     cout<<endl;
   } getch();
-}
+}*/

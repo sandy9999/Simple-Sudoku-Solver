@@ -8,6 +8,7 @@
 #include <fstream.h>
 int a[10][10],user[10][10],s[10][10],key[100];
 void creategrid();
+char quit;
 
 void navigate()
 {
@@ -98,7 +99,11 @@ void navigate()
     gotoxy(curc,curr);
     }
     else if(ch=='q'||ch=='Q')
-    exit(0);
+     { cout<<"Are you sure you want to quit(y/n)";
+       cin>>quit;
+       if(quit=='y'||quit=='Y')
+       return;
+     }
     else if(ch=='c' || ch=='C')
     {
        int flag=1;
@@ -293,7 +298,7 @@ for(int k=0; k<9; k++)
   z.close();
    }
 
-   int main(void)
+   int navigation(void)
    {
     int gdriver=DETECT,gmode,i,j;
     initgraph(&gdriver,&gmode,"C:/TURBOC3/BGI");
