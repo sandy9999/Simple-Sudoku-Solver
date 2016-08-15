@@ -18,7 +18,7 @@ void navigate()
  cout<<'_';
  while(ch!='q'||ch!='Q')
  { ch=getch();
-  if(isdigit(ch))
+  if(isdigit(ch)&&ch!='0')
   {
   //cout<<a[key[nor]][key[noc]];
   gotoxy(noc,nor);
@@ -99,10 +99,16 @@ void navigate()
     gotoxy(curc,curr);
     }
     else if(ch=='q'||ch=='Q')
-     { cout<<"Are you sure you want to quit(y/n)";
+     {gotoxy(26,25);
+      cout<<"Are you sure you want to quit(y/n)";
        cin>>quit;
        if(quit=='y'||quit=='Y')
        return;
+       else
+       {gotoxy(26,25);
+      cout<<"                                    ";
+      }
+
      }
     else if(ch=='c' || ch=='C')
     {
@@ -133,12 +139,23 @@ void navigate()
    void creategrid()
    {
       int ct1=0,ct2,i,j;
+      setcolor(WHITE);
       for(i=150;ct1<9;i+=40,ct1++)
       {
        ct2=0;
        for(j=20;ct2<9;j+=40,ct2++)
-       rectangle(i,j,i+40,j+40);
-       }
+       rectangle(i,j,i+40,j+40);}
+       int m,n;
+       ct1=0;
+       for(m=150;ct1<4;m+=120,ct1++)
+       {setcolor(RED);
+       line(m,20,m,380);}
+       ct1=0;
+       for(n=20;ct1<4;n+=120,ct1++)
+       {
+	setcolor(RED);
+	line(150,n,510,n);}
+
    }
 
 void puzzleinput()

@@ -1,1 +1,6 @@
-Sudoku is a popular logical game. The name comes from Japanese "Suji Wa Dokushin Ni Kagiru," but its origin is not japaneese. The game was published in eighties of 20th century under the name "Number Place" in an american puzzle magazine, and it bacame popular in Japan. But the real boom came in 2005, when sudoku spread the whole world and has become massively popular. Today sudoku is one of the most famous and most frequent games distributed by magazines, newspaper and internet.
+sudoku is a logic-based,[2][3] combinatorial[4] number-placement puzzle. The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid (also called "boxes", "blocks", "regions", or "subsquares") contains all of the digits from 1 to 9. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a unique solution.
+
+Completed puzzles are always a type of Latin square with an additional constraint on the contents of individual regions. For example, the same single integer may not appear twice in the same row, column, or any of the nine 3×3 subregions of the 9x9 playing board.
+
+Unlike the number of complete Sudoku grids, the number of minimal 9×9 Sudoku puzzles is not precisely known. (A minimal puzzle is one in which no clue can be deleted without losing uniqueness of the solution.) 
+

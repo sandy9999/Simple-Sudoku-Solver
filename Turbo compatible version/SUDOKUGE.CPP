@@ -4,6 +4,7 @@
 #include <fstream.h>
 #include <conio.h>
 int arr[10][10],lis[10][10][10],tail[10][10];
+int lev;
 
 class Sudoku
 {
@@ -43,19 +44,21 @@ void Sudoku::solved()
     srand((unsigned)time(NULL));
     int counter=0;
     int j,r,c;
-    while(counter<55)
+    while(counter<lev)
     {
 	//cout<<"HI";
 	r=(rand()%9)+1;
 	c=(rand()%9)+1;
 	j=arr[r][c];
-	arr[r][c]=0;
+      if(j!=0)
+{	arr[r][c]=0;
 	counter++;
 	if(solutions()==2)
 	{
 	    arr[r][c]=j;
 	    counter--;
 	}
+}
     }
   }
 
@@ -229,7 +232,7 @@ int gen()
    char ch;
    Sudoku s;
    s.solved();
-   fstream x("Soln.txt",ios::out);
+   fstream x("C:/TURBOC3/BIN/PROJECT/Soln.txt",ios::out);
    for(int i=1; i<=9; i++)
    {
      for(int j=1; j<=9; j++)
@@ -242,7 +245,7 @@ int gen()
    }
    x.close();
    s.unsolved();
-  x.open("Puzzle.txt",ios::out);
+  x.open("C:/TURBOC3/BIN/PROJECT/Puzzle.txt",ios::out);
    for(i=1; i<=9; i++)
    {
      for(int j=1; j<=9; j++)

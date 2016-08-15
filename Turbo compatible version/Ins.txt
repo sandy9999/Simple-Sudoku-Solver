@@ -1,12 +1,12 @@
 Genral Rules to be followed.
 
-     The rules of the game are simple: each of the nine blocks has to contain all the numbers 1-9 within its squares. Each number can only appear once in a row, column or box.
+The rules of the game are simple: each of the nine blocks has to contain all the numbers 1-9 within its squares. Each number can only appear once in a row, column or box.
 
 CONTROLS.
 
-A--> To move left.
-W--> To move up.
-S--> To move down.
-D--> To move right.
-Q--> To quit game and return to menu.
-C--> To check if solution is correct.
+A: To move left.
+W: To move up.
+S: To move down.
+D: To move right.
+Q: To quit game and return to menu.
+C: To check if solution is correct.

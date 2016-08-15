@@ -6,33 +6,104 @@
 #include<graphics.h>
 #include "C:/TURBOC3/BIN/PROJECT/SUDOKUGE.CPP"
 #include "C:/TURBOC3/BIN/PROJECT/NAVIGATE.CPP"
-int lev;
-
-void main()
+void credits()
 {
-/* int gdriver=DETECT,gmode;
-    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");  */
+clrscr();
+ int gdriver=DETECT,gmode;
+    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+  setbkcolor(WHITE);
+  setcolor(BLUE);
+  settextstyle(TRIPLEX_FONT, HORIZ_DIR, 5);
+  outtextxy(5,90,"CREDITS:");
+  setcolor(CYAN);
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 2);
+outtextxy(5,200,"HARISH.T");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 2);
+outtextxy(5,240,"SANDHYA SARAVANAN");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 2);
+outtextxy(5,280,"ANISHKUMAR.SS");
+getch();
+closegraph();
+}
+void main()
+{ clrscr();
+  char h[6][25]={"WELCOME", "TO", "THE", "WORLD","OF", "SUDOKU"};
+ int gdriver=DETECT,gmode,j=150,i;
+    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+  setbkcolor(WHITE);
+  setcolor(MAGENTA);
+  for(i=0;i<3;i++)
+  {getch();
+  settextstyle(TRIPLEX_FONT,HORIZ_DIR,3);
+  outtextxy(j,150,h[i]);
+  j+=150;
+  } j=200;
+  for(i=3;i<5;i++)
+  {
+   getch();
+   settextstyle(TRIPLEX_FONT,HORIZ_DIR,3);
+  outtextxy(j,190,h[i]);
+  j+=150;
+  }
+  getch();
+  settextstyle(TRIPLEX_FONT,HORIZ_DIR,3);
+  outtextxy(250,230,"SUDOKU");
+  getch();
+ closegraph();
+
 MENU:
 clrscr();
+ int sdriver=DETECT,smode;
+    initgraph(&sdriver,&smode,"c:/turboc3/bgi");
 int choice,diff;// Diff is the variable which accepts the difficulty level from the user
 char ch, s[100];
-cout<<"\n\n\t\t\t\t  SUDOKU"  ;
-cout<<"\n\n\tMENU"<<endl;
-cout<<"\n1.New Game\t\n2.Instructions\t\n3.About the game\t\n4.Quit" ;
-cout<<"\n\nEnter your Choice (1/2/3/4)";
+setbkcolor(WHITE);
+setcolor(GREEN);
+settextstyle(BOLD_FONT, HORIZ_DIR, 2);
+outtextxy(210,2,"SUDOKU");
+settextstyle(BOLD_FONT, HORIZ_DIR, 2);
+outtextxy(5,90,"MENU");
+setcolor(BLUE);
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
+outtextxy(5,140,"1.NEW GAME");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
+outtextxy(5,180,"2.INSTRUCTIONS");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
+outtextxy(5,220,"3.ABOUT THE GAME");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
+outtextxy(5,260,"4.QUIT");
+setcolor(RED);
+settextstyle(COMPLEX_FONT, HORIZ_DIR, 2);
+outtextxy(20,320,"ENTER YOUR CHOICE(1,2,3,4):");
+gotoxy(49,22);
 cin>>choice;
-fstream x("C:/TURBOC3/PROJECTS/SUDOKU/Ins.txt",ios::in);
-fstream y("C:/TURBOC3/PROJECTS/SUDOKU/About.txt",ios::in);
+closegraph();
+fstream x("C:/TURBOC3/BIN/PROJECT/Ins.txt",ios::in);
+fstream y("C:/TURBOC3/BIN/PROJECT/About.txt",ios::in);
 if(choice==1)
  { clrscr();
-   cout<<"\nChoose the difficulty level\n\n1.Easy()\n\n2.Medium()\n\n3.Hard()\n";
+ int gdriver=DETECT,gmode;
+    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+    setbkcolor(WHITE);
+    setcolor(GREEN);
+   settextstyle(BOLD_FONT, HORIZ_DIR, 2);
+outtextxy(5,90,"CHOOSE THE DIFFICULTY LEVEL(1,2,3)");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 2);
+setcolor(BLUE);
+outtextxy(5,150,"1.EASY()");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 2);
+outtextxy(5,190,"2.MEDIUM()");
+settextstyle(TRIPLEX_FONT, HORIZ_DIR, 2);
+outtextxy(5,230,"3.HARD()");
+gotoxy(30,16);
    cin>>diff;
+   closegraph();
    if(diff==1)
-    lev=40;
-   if(diff==2)
-    lev=45;
-   if(diff==3)
     lev=50;
+   if(diff==2)
+    lev=55;
+   if(diff==3)
+    lev=60;
    gen();
    navigation();
    goto MENU;
@@ -46,49 +117,69 @@ if(choice==1)
  }
 else if(choice==2)
  { clrscr();
+ int gdriver=DETECT,gmode,i=50;
+    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+    setbkcolor(WHITE);
+    setcolor(BLUE);
  if(!x)
-   cout<<"file not found";
+  {
+   settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
+   outtextxy(5,50,"file not found");}
  else
    while(!x.eof())
-     {
+     {setcolor(RED);
      x.getline(s,80,'.');
-     cout<<s<<endl;
+     outtextxy(5,i,s);
+     i+=25;
      }
      x.close();
-    cout<<"\n\nDo you want return to menu? (y/n)";
+     setcolor(BLUE);
+    settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
+   outtextxy(20,450,"do you want to return to menu(y/n)");
+   gotoxy(49,25);
    cin>>ch;
    if(ch=='y'||ch=='Y')
     goto MENU;
    else
-    exit(0);
-
+    credits();
+    closegraph();
  //link to the text file containing the instructions
  }
 else if(choice==3)
  {  clrscr();
+  int gdriver=DETECT,gmode,i=50;
+    initgraph(&gdriver,&gmode,"c:/turboc3/bgi");
+    setbkcolor(WHITE);
+    setcolor(BLUE);
   if(!y)
-   cout<<"file not found";
+   {
+   settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
+   outtextxy(5,50,"file not found");}
   else
    while(!y.eof())
-     {
+     {setcolor(RED);
      y.getline(s,80,'.');
-     cout<<s<<endl;;
+     outtextxy(5,i,s);
+     i+=25;
      }
      y.close();
-   cout<<"\n\n Do you want return to menu? (y/n)";
+     setcolor(BLUE);
+   settextstyle(TRIPLEX_FONT, HORIZ_DIR, 2);
+   outtextxy(20,450,"do you want to return to menu(y/n)");
+   gotoxy(49,25);
    cin>>ch;
    if(ch=='y'||ch=='Y')
     goto MENU;
    else
-    exit(0);
+    credits();
+    closegraph();
  //link to the text file containg the brief history of the game
  }
 else if(choice==4)
  {
-   exit(0);
+   credits();
  }
 getch();
-
 }
 
 /*
