@@ -211,7 +211,7 @@ int Sudoku::findsoln(int r,int c,int counter)
 
 int Sudoku::solutions()
 {
-    for(int r=1; r<=9; r++)
+    /*for(int r=1; r<=9; r++)
     {
 	for(int c=1; c<=9; c++)
 	{
@@ -223,7 +223,7 @@ int Sudoku::solutions()
 		    }
 	    }
 	}
-    }
+    }*/
     return findsoln(1,1,0);//Calls cell (1,1)
 }
 

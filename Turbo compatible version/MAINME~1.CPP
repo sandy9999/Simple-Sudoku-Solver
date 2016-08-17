@@ -99,11 +99,11 @@ gotoxy(30,16);
    cin>>diff;
    closegraph();
    if(diff==1)
-    lev=50;
+    lev=40;
    if(diff==2)
-    lev=55;
+    lev=45;
    if(diff==3)
-    lev=60;
+    lev=50;
    gen();
    navigation();
    goto MENU;
